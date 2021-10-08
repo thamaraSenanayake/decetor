@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "580815325809",
+    "project_id": "depress-detector",
+    "storage_bucket": "depress-detector.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580815325809:android:2343346ff73719be6ba9d0",
+        "android_client_info": {
+          "package_name": "com.example.detector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580815325809-ujsg21tpl9u68ir1jp1c0f5l5ppch1ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsOo8GqzJnO-T1v83Nfizg5znRnpnJ0R4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580815325809-ujsg21tpl9u68ir1jp1c0f5l5ppch1ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
