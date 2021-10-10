@@ -24,16 +24,17 @@ class _TextAnswersScreenState extends State<TextAnswersScreen> {
   int _personScore =0;
   int _currentForm = 0;
   Timer? timer;
-  int _initSec = 0;
+  int _initSec = 10;
+  int _personCount = 0;
 
   @override
   void initState() {
     super.initState();
     timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
-        _initSec +=1; 
+        _initSec -=1; 
       });
-      if(_initSec == 10){
+      if(_initSec == 0){
         timer?.cancel();
         _colorScore = 9;
         _currentForm = 1;
@@ -69,7 +70,7 @@ class _TextAnswersScreenState extends State<TextAnswersScreen> {
                       width: size.width,
                       padding: EdgeInsets.only(right: 20),
                       child: Text(
-                        ":0$_initSec",
+                        (_initSec<10? ":0":":")+"$_initSec",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight:FontWeight.w600
@@ -79,22 +80,28 @@ class _TextAnswersScreenState extends State<TextAnswersScreen> {
                     ),
                     SelectColor(
                       selectedColor: (val){
-                        _colorScore = val;
+                        setState(() {
+                          _colorScore = val;
+                        });
                       }
                     ),
                   ],
                 ):
                 _currentForm == 1?
                 PersonSelect(
-                  personSelect: (val){
-                    _personScore = val;
+                  personSelect: (val,count){
+                    print(val);
+                    setState(() {
+                      _personScore = val;
+                      _personCount = count;
+                    });
                   }
                 ):
                 _currentForm == 2?
                 ResultView(score: _personScore+_colorScore,):
                 Container(),
                 
-                _currentForm == 1 || _currentForm == 0?
+                (_currentForm == 1 && _personCount>0) || (_currentForm == 0 && _colorScore>0)?
                 Padding(
                   padding:EdgeInsets.symmetric(horizontal: Sizes.defaultPadding),
                   child: PrimaryButton(

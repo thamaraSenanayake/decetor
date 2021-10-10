@@ -38,6 +38,8 @@ dependencies:
   google_fonts: ^2.1.0
   flutter_staggered_animations: ^1.0.0
   flutter_svg: ^0.22.0
+  youtube_player_flutter: ^8.0.0
+
 
 
 

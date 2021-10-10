@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class PersonSelect extends StatefulWidget {
-  final Function(int) personSelect;
+  final Function(int,int) personSelect;
   PersonSelect({Key? key,required this.personSelect}) : super(key: key);
 
   @override
@@ -12,31 +12,33 @@ class PersonSelect extends StatefulWidget {
 
 class _PersonSelectState extends State<PersonSelect> {
   List<String> _personNameList = ["Mark Zuckerberg","Jack Ma","Shah Rukh Khan","Malala Yousafzai","Mahatma Gandhi","Nelson Mandela","Kusal Mendis","Gotabaya Rajapaksa","Sakvithi Ranasinghe","Osama bin Laden","Idi Amin","Adolf Hitler","Sushant Singh Rajput","Dasun Nishan","Marilyn Monroe"];
-  List<String> _imageList = ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Mark_Zuckerberg_F8_2019_Keynote_%2847721886632%29_%28cropped%29.jpg/220px-Mark_Zuckerberg_F8_2019_Keynote_%2847721886632%29_%28cropped%29.jpg",
-                             "https://image.cnbcfm.com/api/v1/image/104225995-_95A5004.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/6/6e/Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shinz%C5%8D_Abe_and_Malala_Yousafzai_%281%29_Cropped.jpg/220px-Shinz%C5%8D_Abe_and_Malala_Yousafzai_%281%29_Cropped.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/220px-Mahatma-Gandhi%2C_studio%2C_1931.jpg",
-                             'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/220px-Nelson_Mandela_1994.jpg',
-                             "https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/303800/303835.png",
-                             "https://upload.wikimedia.org/wikipedia/commons/d/d0/Nandasena_Gotabaya_Rajapaksa.jpg",
-                             "https://pbs.twimg.com/profile_images/1140153679275683840/6DO92spd_400x400.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Osama_bin_Laden_portrait.jpg/220px-Osama_bin_Laden_portrait.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Idi_Amin_at_UN_%28United_Nations%2C_New_York%29_gtfy.00132_%28cropped%29.jpg/800px-Idi_Amin_at_UN_%28United_Nations%2C_New_York%29_gtfy.00132_%28cropped%29.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hitler_portrait_crop.jpg/220px-Hitler_portrait_crop.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/a/ab/Sushant_sr_Manish_M_B%27day_bash.jpg",
-                             "https://gossip.hirufm.lk/data/gossip_images/v3imgpath/2017Sep/25/12976732_10209528903964384_4279525041107462994_o.jpg",
-                             "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Monroecirca1953.jpg/800px-Monroecirca1953.jpg"
-                            ];
+  List<String> _imageList = [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Mark_Zuckerberg_F8_2019_Keynote_%2847721886632%29_%28cropped%29.jpg/220px-Mark_Zuckerberg_F8_2019_Keynote_%2847721886632%29_%28cropped%29.jpg",
+    "https://image.cnbcfm.com/api/v1/image/104225995-_95A5004.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/6/6e/Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shinz%C5%8D_Abe_and_Malala_Yousafzai_%281%29_Cropped.jpg/220px-Shinz%C5%8D_Abe_and_Malala_Yousafzai_%281%29_Cropped.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/220px-Mahatma-Gandhi%2C_studio%2C_1931.jpg",
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/220px-Nelson_Mandela_1994.jpg',
+    "https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/303800/303835.png",
+    "https://upload.wikimedia.org/wikipedia/commons/d/d0/Nandasena_Gotabaya_Rajapaksa.jpg",
+    "https://pbs.twimg.com/profile_images/1140153679275683840/6DO92spd_400x400.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Osama_bin_Laden_portrait.jpg/220px-Osama_bin_Laden_portrait.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Idi_Amin_at_UN_%28United_Nations%2C_New_York%29_gtfy.00132_%28cropped%29.jpg/800px-Idi_Amin_at_UN_%28United_Nations%2C_New_York%29_gtfy.00132_%28cropped%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hitler_portrait_crop.jpg/220px-Hitler_portrait_crop.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/ab/Sushant_sr_Manish_M_B%27day_bash.jpg",
+    "https://gossip.hirufm.lk/data/gossip_images/v3imgpath/2017Sep/25/12976732_10209528903964384_4279525041107462994_o.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Monroecirca1953.jpg/800px-Monroecirca1953.jpg"
+  ];
   List<int> _scoreList = [0,0,0,0,0,0,1,1,1,2,2,2,3,3,3];
   List<int> _selectPerson =[];
+  String _personError = "";
 
   _setScore(){
     int score = 0;
     for (var item in _selectPerson) {
       score+=_scoreList[item];
     }
-    widget.personSelect(score);
+    widget.personSelect(score,_selectPerson.length);
   }
 
 
@@ -64,12 +66,24 @@ class _PersonSelectState extends State<PersonSelect> {
                     child: GestureDetector(
                       onTap: (){
                         print("object");
+                        
                         List<int> _selectPersonTemp = [];
                         _selectPersonTemp.addAll(_selectPerson);
                         if(_selectPersonTemp.contains(index)){
                           _selectPersonTemp.remove(index);
+                          if(_personError.isNotEmpty){
+                            setState(() {
+                              _personError = "";
+                            });
+                          }
                         }else{
-                          _selectPersonTemp.add(index);
+                          if(_selectPerson.length == 3){
+                            setState(() {
+                              _personError = "Cant select more than 3 person";
+                            });
+                          }else{
+                            _selectPersonTemp.add(index);
+                          }
                         }
                         setState(() {
                           _selectPerson = _selectPersonTemp;
