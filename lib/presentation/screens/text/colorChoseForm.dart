@@ -13,8 +13,8 @@ class SelectColor extends StatefulWidget {
 }
 
 class _SelectColorState extends State<SelectColor> {
-  List _colorsList = [Colors.orange,Colors.brown,Colors.yellow,Colors.purple,Colors.blue[900],Colors.lightBlue,Colors.blue,Colors.grey,Colors.green];
-  List _scoreList = [2,2,2,2,3,4,6,8,1];
+  List _colorsList = [Colors.orange,Colors.brown,Colors.yellow,Colors.purple,Colors.blue[900],Colors.lightBlue,Colors.blue,Colors.grey,Colors.green,Colors.black];
+  List _scoreList = [2,2,2,2,3,4,6,8,1,6];
   int _selectColor =-1;
   
 
