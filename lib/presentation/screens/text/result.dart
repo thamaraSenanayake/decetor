@@ -143,7 +143,7 @@ class _ResultViewState extends State<ResultView> {
                 )
               ),
               
-              result>75.0?
+              result>50.0?
               Padding(
                 padding:EdgeInsets.symmetric(horizontal: 20.w),
                 child: PrimaryButton(
