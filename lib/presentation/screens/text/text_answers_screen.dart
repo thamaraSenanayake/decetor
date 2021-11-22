@@ -4,8 +4,11 @@ import 'package:detector/common/constants/size_constants.dart';
 import 'package:detector/data/provider/data_provider.dart';
 import 'package:detector/data/provider/ui_support_provider.dart';
 import 'package:detector/presentation/screens/text/colorChoseForm.dart';
+import 'package:detector/presentation/screens/text/emojiSelector.dart';
+import 'package:detector/presentation/screens/text/faceSelector.dart';
 import 'package:detector/presentation/screens/text/peresonChoseForm.dart';
 import 'package:detector/presentation/screens/text/result.dart';
+import 'package:detector/presentation/screens/text/sleepingHour.dart';
 import 'package:detector/presentation/widgets/custom_app_bar.dart';
 import 'package:detector/presentation/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +25,12 @@ class _TextAnswersScreenState extends State<TextAnswersScreen> {
   
   int _colorScore =0;
   int _personScore =0;
+  int _emojiScore =0;
+  int _emojiCount =0;
+  int _hoursScore =0;
+  // int _hoursCount =0;
+  int _faceScore =0;
+  int _faceCount =0;
   int _currentForm = 0;
   Timer? timer;
   int _initSec = 10;
@@ -59,7 +68,12 @@ class _TextAnswersScreenState extends State<TextAnswersScreen> {
                   padding: EdgeInsets.symmetric(horizontal: Sizes.halfSpace),
                   child: CustomAppBar(
                     backButton: true,
-                    title: _currentForm == 0?"Choose a color":_currentForm == 1?"Choose a Person":"Result",
+                    title: _currentForm == 0?"Choose a color":
+                    _currentForm == 1?"Choose a Person":
+                    _currentForm == 2?"Select favorite emoji":
+                    _currentForm == 3?"Select Face type":
+                    _currentForm == 4?"Select Sleeping hours":
+                    "Result",
                   ),
                 ),
 
@@ -98,14 +112,46 @@ class _TextAnswersScreenState extends State<TextAnswersScreen> {
                   }
                 ):
                 _currentForm == 2?
-                ResultView(score: _personScore+_colorScore,):
-                Container(),
+                EmojiSelector(
+                  emojiSelect: (val,count){
+                    print(val);
+                    setState(() {
+                      _emojiScore = val;
+                      _emojiCount = count;
+                    });
+                  }
+                ):
+                _currentForm == 3?
+                FaceSelector(
+                  faceSelect: (val,count){
+                    print(val);
+                    setState(() {
+                      _faceScore = val;
+                      _faceCount = count;
+                    });
+                  }
+                ):
+                _currentForm == 4?
+                SleepingHours(
+                  selectedHours: (val){
+                    print(val);
+                    setState(() {
+                      _hoursScore = val;
+                    });
+                  }
+                ):
+                ResultView(score: _personScore+_colorScore + _emojiScore+_faceScore+_hoursScore,),
                 
-                (_currentForm == 1 && _personCount>0) || (_currentForm == 0 && _colorScore>0)?
+                (_currentForm == 1 && _personCount>0) || 
+                (_currentForm == 0 && _colorScore>0) ||
+                (_currentForm == 2 && _emojiCount>0) ||
+                (_currentForm == 3 && _faceCount>0) ||
+                (_currentForm == 4 && _hoursScore>0) 
+                ?
                 Padding(
                   padding:EdgeInsets.symmetric(horizontal: Sizes.defaultPadding),
                   child: PrimaryButton(
-                    text: _currentForm==1
+                    text: _currentForm==4
                         ? "SUBMIT"
                         : "NEXT",
                     function: () {

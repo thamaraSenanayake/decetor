@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-class SelectColor extends StatefulWidget {
-  final Function(int) selectedColor;
-  SelectColor({Key? key,required this.selectedColor}) : super(key: key);
+class SleepingHours extends StatefulWidget {
+  final Function(int) selectedHours;
+  SleepingHours({Key? key,required this.selectedHours}) : super(key: key);
 
   @override
-  _SelectColorState createState() => _SelectColorState();
+  _SleepingHoursState createState() => _SleepingHoursState();
 }
 
-class _SelectColorState extends State<SelectColor> {
-  List _colorsList = [Colors.orange,Colors.brown,Colors.yellow,Colors.purple,Colors.blue[900],Colors.lightBlue,Colors.black,Colors.grey,Colors.green];
-  List _scoreList = [2,2,2,2,3,4,6,8,1];
-  int _selectColor =-1;
-  
+class _SleepingHoursState extends State<SleepingHours> {
+  List<String> _hourList = ["12-10 hours","10-8 hours","8-5 hours","5-3 hours","3-1 hours"];
+  List _scoreList = [5,4,1,3,6];
+  late int _selectHour = -1;
 
 
   @override
@@ -30,7 +29,7 @@ class _SelectColorState extends State<SelectColor> {
           mainAxisSpacing: 10,
           crossAxisSpacing:10,
           children: List.generate(
-            _colorsList.length,
+            _hourList.length,
             (int index) {
               return AnimationConfiguration.staggeredGrid(
                 position: index,
@@ -41,13 +40,13 @@ class _SelectColorState extends State<SelectColor> {
                     child: GestureDetector(
                       onTap: (){
                         setState(() {
-                          _selectColor = index;
+                          _selectHour = index;
                         });
-                        widget.selectedColor(_scoreList[index]);
+                        widget.selectedHours(_scoreList[index]);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: _colorsList[index],
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(3),
                           boxShadow: [
                             BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.15)),
@@ -64,7 +63,7 @@ class _SelectColorState extends State<SelectColor> {
                         ),
                         child:Stack(
                           children: [
-                            if(_selectColor == index)
+                            if(_selectHour == index)
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Align(
@@ -84,7 +83,16 @@ class _SelectColorState extends State<SelectColor> {
                                   ),
                                 ),
                               ),
-                            )     
+                            )  ,
+                            Center(
+                              child: Text(
+                                _hourList[index],
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500
+                                ),
+                              ),
+                            )   
                           ],  
                         ) ,
                       ),

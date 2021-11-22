@@ -23,7 +23,7 @@ class _ResultViewState extends State<ResultView> {
   @override
   void initState() {
     super.initState();
-    result = widget.score*100/18;
+    result = widget.score*100/45;
     if(result < 24){
       _color =Color( 0xff00B0FF);
       _text ="Congratulation you are in normal condition";
